@@ -1,0 +1,43 @@
+# =====================
+# NodeJS (Server)
+# =====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+
+# =====================
+# Logs
+# =====================
+logs/
+*.log
+
+# =====================
+# OS files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# IDE
+# =====================
+.vscode/
+.idea/
+
+# =====================
+# Build / temp
+# =====================
+dist/
+build/
+.tmp/
+
+# =====================
+# Arduino / ESP32
+# =====================
+*.bin
+*.elf
+*.map
+
+# Arduino cache (tùy máy)
+*.arduino*
