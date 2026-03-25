@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Home Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!--========== HEADER ==========-->
+    <header class="topbar">
+      <div>
+        <h1>Smart Home IoT Dashboard</h1>
+        <p>Giam sat moi truong va dieu khien thiet bi tu xa</p>
+      </div>
+      <div class="status-pill" id="connectionStatus">Dang ket noi...</div>
+    </header>
+
+    <section id="fireAlert" class="fire-alert hidden">
+      FIRE ALERT: Phat hien khoi! Buzzer dang hoat dong.
+    </section>
+
+    <section class="grid sensors">
+      <div class="card">
+        <h2>Nhiet do</h2>
+        <div class="metric"><span id="temperature">--</span><small>°C</small></div>
+      </div>
+      <div class="card">
+        <h2>Anh sang</h2>
+        <div class="metric"><span id="light">--</span><small>/1023</small></div>
+      </div>
+      <div class="card">
+        <h2>Khoi</h2>
+        <div class="metric"><span id="smoke">--</span><small>/1023</small></div>
+      </div>
+    </section>
+
+    <section class="grid devices">
+      <div class="card">
+        <h2>Den</h2>
+        <p>Trang thai: <strong id="lightState">--</strong></p>
+        <p>Che do: <strong id="lightMode">--</strong></p>
+        <div class="btn-row">
+          <button data-device="light" data-action="ON">Bat</button>
+          <button data-device="light" data-action="OFF">Tat</button>
+          <button data-device="light" data-action="AUTO">Auto</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Quat</h2>
+        <p>Trang thai: <strong id="fanState">--</strong></p>
+        <p>Che do: <strong id="fanMode">--</strong></p>
+        <div class="btn-row">
+          <button data-device="fan" data-action="ON">Bat</button>
+          <button data-device="fan" data-action="OFF">Tat</button>
+          <button data-device="fan" data-action="AUTO">Auto</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Buzzer</h2>
+        <p>Trang thai: <strong id="buzzerState">--</strong></p>
+        <button id="resetAlarmBtn">Reset canh bao khoi</button>
+      </div>
+    </section>
+
+    <section class="grid bottom">
+      <div class="card">
+        <h2>Mo phong cam bien</h2>
+        <div class="form-group">
+          <label>Nhiet do</label>
+          <input type="number" id="inputTemperature" value="29" step="0.1" />
+        </div>
+        <div class="form-group">
+          <label>Anh sang</label>
+          <input type="number" id="inputLight" value="600" />
+        </div>
+        <div class="form-group">
+          <label>Khoi</label>
+          <input type="number" id="inputSmoke" value="80" />
+        </div>
+        <button id="simulateBtn">Gui gia tri mo phong</button>
+      </div>
+
+      <div class="card">
+        <h2>Thong tin he thong</h2>
+        <p>So client dang ket noi: <strong id="connectedDevices">0</strong></p>
+        <p>Cap nhat lan cuoi: <strong id="updatedAt">--</strong></p>
+        <p>Nguong den ON/OFF: <strong id="lightThreshold">--</strong></p>
+        <p>Nguong quat ON/OFF: <strong id="fanThreshold">--</strong></p>
+        <p>Nguong khoi: <strong id="smokeThreshold">--</strong></p>
+      </div>
+    </section>
+
+    <section class="card log-card">
+      <h2>Nhat ky su kien</h2>
+      <ul id="logs"></ul>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
