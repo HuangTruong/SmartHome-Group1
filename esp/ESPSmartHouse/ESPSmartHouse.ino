@@ -4,26 +4,33 @@
 #include <DHT.h>
 
 /*========== WIFI ==========*/
-const char* ssid = "YOUR_WIFI";
-const char* password = "YOUR_PASS";
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
 
 /*========== SERVER ==========*/
 String server = "http://YOUR_IP:3000";
 
 /*========== PIN ==========*/
 #define LDR_PIN A0
-#define MQ2_PIN D5      // dùng digital
+#define MQ2_PIN D5
 #define DHT_PIN D4
-#define RELAY_LIGHT D1
+
 #define RELAY_FAN D2
+#define RELAY_BUZZER D8
+
 #define LED_PIN D0
+#define BUZZER_PIN D3
+
+// L9110 (motor/quạt DC)
+#define MOTOR_IN1 D6
+#define MOTOR_IN2 D7
 
 #define DHTTYPE DHT11
 DHT dht(DHT_PIN, DHTTYPE);
 
-/*========== BIEN ==========*/
+/*========== BIẾN ==========*/
 unsigned long lastTime = 0;
-const long interval = 3000;
+const long interval = 800;
 
 float temp = 0;
 int light = 0;
@@ -44,12 +51,11 @@ void connectWiFi() {
 
 void reconnectWiFi() {
   if (WiFi.status() != WL_CONNECTED) {
-    Serial.println("Reconnecting WiFi...");
     connectWiFi();
   }
 }
 
-/*========== DOC CAM BIEN ==========*/
+/*========== ĐỌC CẢM BIẾN ==========*/
 void readSensor() {
   light = analogRead(LDR_PIN);
   smoke = digitalRead(MQ2_PIN);
@@ -60,7 +66,7 @@ void readSensor() {
   Serial.printf("Temp: %.2f | Light: %d | Smoke: %d\n", temp, light, smoke);
 }
 
-/*========== GUI DATA ==========*/
+/*========== GỬI DATA ==========*/
 void sendData() {
   WiFiClient client;
   HTTPClient http;
@@ -78,16 +84,12 @@ void sendData() {
 
   int httpCode = http.POST(json);
 
-  if (httpCode > 0) {
-    Serial.println("POST OK");
-  } else {
-    Serial.println("POST Failed");
-  }
+  Serial.println(httpCode > 0 ? "POST OK" : "POST FAIL");
 
   http.end();
 }
 
-/*========== NHAN LENH ==========*/
+/*========== NHẬN LỆNH ==========*/
 void getControl() {
   WiFiClient client;
   HTTPClient http;
@@ -97,7 +99,7 @@ void getControl() {
 
   if (httpCode > 0) {
     String payload = http.getString();
-    Serial.println("Control: " + payload);
+    Serial.println(payload);
 
     DynamicJsonDocument doc(256);
     deserializeJson(doc, payload);
@@ -105,34 +107,58 @@ void getControl() {
     bool lightCmd = doc["light"];
     bool fanCmd = doc["fan"];
     bool buzzerCmd = doc["buzzer"];
+    bool motorCmd = doc["motor"];
 
-    // Điều khiển relay (LOW = ON)
     digitalWrite(RELAY_LIGHT, lightCmd ? LOW : HIGH);
     digitalWrite(RELAY_FAN, fanCmd ? LOW : HIGH);
-    digitalWrite(LED_PIN, buzzerCmd ? HIGH : LOW);
+    digitalWrite(BUZZER_PIN, buzzerCmd ? HIGH : LOW);
+
+    controlMotor(motorCmd);
 
   } else {
-    Serial.println("GET Failed");
+    Serial.println("GET FAIL");
   }
 
   http.end();
 }
 
+/*========== MOTOR (L9110) ==========*/
+void controlMotor(bool state) {
+  if (state) {
+    digitalWrite(MOTOR_IN1, HIGH);
+    digitalWrite(MOTOR_IN2, LOW);
+  } else {
+    digitalWrite(MOTOR_IN1, LOW);
+    digitalWrite(MOTOR_IN2, LOW);
+  }
+}
+
 /*========== AUTO MODE ==========*/
 void autoControl() {
-  // Tự bật đèn nếu tối
-  if (light < 300) {
-    digitalWrite(RELAY_LIGHT, LOW);
+
+  // Trời tối → bật đèn
+  if (light < 300) { // trời tối
+    digitalWrite(LED_PIN, HIGH);
+  } else {
+    digitalWrite(LED_PIN, LOW);
   }
 
-  // Tự bật quạt nếu nóng
+  // Nóng → bật quạt relay + motor
   if (temp > 30) {
     digitalWrite(RELAY_FAN, LOW);
+    controlMotor(true);
+  } else {
+    digitalWrite(RELAY_FAN, HIGH);
+    controlMotor(false);
   }
 
-  // Cảnh báo khói
+  // Có khói → bật buzzer
   if (smoke == HIGH) {
-    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(RELAY_BUZZER, LOW);
+    digitalWrite(BUZZER_PIN, HIGH);
+  } else {
+    digitalWrite(RELAY_BUZZER, HIGH);
+    digitalWrite(BUZZER_PIN, LOW);
   }
 }
 
@@ -140,30 +166,37 @@ void autoControl() {
 void setup() {
   Serial.begin(115200);
 
-  pinMode(RELAY_LIGHT, OUTPUT);
-  pinMode(RELAY_FAN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
   pinMode(MQ2_PIN, INPUT);
 
-  digitalWrite(RELAY_LIGHT, HIGH);
+  pinMode(RELAY_FAN, OUTPUT);
+  pinMode(RELAY_BUZZER, OUTPUT);
+
+  pinMode(MOTOR_IN1, OUTPUT);
+  pinMode(MOTOR_IN2, OUTPUT);
+
+  // Relay OFF (Active LOW)
   digitalWrite(RELAY_FAN, HIGH);
+  digitalWrite(RELAY_BUZZER, HIGH);
+
   digitalWrite(LED_PIN, LOW);
+  digitalWrite(BUZZER_PIN, LOW);
 
   dht.begin();
-
-  connectWiFi();
+  //connectWiFi();
 }
 
 /*========== LOOP ==========*/
 void loop() {
-  reconnectWiFi();
+  //reconnectWiFi();
 
   if (millis() - lastTime > interval) {
     lastTime = millis();
 
     readSensor();
-    sendData();
-    getControl();
+    //sendData();
+    //getControl();
     autoControl();
   }
 }

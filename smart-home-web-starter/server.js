@@ -248,9 +248,9 @@ app.post('/api/alarm/reset', (req, res) => {
 app.post('/api/esp/data', (req, res) => {
   const { temperature, light, smoke } = req.body;
 
-  if (temperature !== undefined) state.sensors.temperature = temperature;
-  if (light !== undefined) state.sensors.light = light;
-  if (smoke !== undefined) state.sensors.smoke = smoke;
+  if (typeof temperature === 'number') state.sensors.temperature = clamp(temperature, 0, 80);
+  if (typeof light === 'number') state.sensors.light = clamp(light, 0, 1023);
+  if (typeof smoke === 'number') state.sensors.smoke = clamp(smoke, 0, 1023);
 
   addLog('iot', 'ESP gửi dữ liệu');
 
@@ -306,6 +306,12 @@ setInterval(() => {
 
   applyAutomation();
   broadcastState();
+
+  io.emit("sensorData", {
+    temperature: state.sensors.temperature,
+    light: state.sensors.light,
+    smoke: state.sensors.smoke
+  });
 }, 3000);
 // #endregion
 
@@ -314,7 +320,7 @@ setInterval(() => {
 const PORT = 3000;
 
 httpServer.listen(PORT, () => {
-  console.log(`🚀 Server chạy tại: http://localhost:${PORT}`);
+  console.log(`🚀 Server chạy tại: http://localhost:${PORT}`);   // PHAI THAY DOI LOCALHOST CHO IP MANG LAN CUA MINH
 });
 
 addLog('info', 'Hệ thống Smart Home khởi động');

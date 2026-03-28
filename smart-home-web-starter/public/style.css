@@ -1,3 +1,6 @@
+/* =========================
+   1. ROOT VARIABLES
+========================= */
 :root {
   --bg: #0f172a;
   --panel: #111827;
@@ -10,6 +13,9 @@
   --border: #334155;
 }
 
+/* =========================
+   2. GLOBAL RESET
+========================= */
 * {
   box-sizing: border-box;
 }
@@ -21,12 +27,16 @@ body {
   color: var(--text);
 }
 
+/* =========================
+   3. LAYOUT
+========================= */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
 }
 
+/* ===== Topbar ===== */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -37,6 +47,10 @@ body {
 
 .topbar h1 {
   margin: 0 0 6px;
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .topbar p {
@@ -44,27 +58,9 @@ body {
   color: var(--muted);
 }
 
-.status-pill {
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: #1e3a8a;
-  font-weight: bold;
-}
-
-.fire-alert {
-  background: rgba(239, 68, 68, 0.18);
-  border: 1px solid rgba(239, 68, 68, 0.7);
-  color: #fecaca;
-  padding: 14px 16px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.hidden {
-  display: none;
-}
-
+/* =========================
+   4. GRID SYSTEM
+========================= */
 .grid {
   display: grid;
   gap: 16px;
@@ -83,12 +79,17 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+/* =========================
+   5. CARD COMPONENT
+========================= */
 .card {
-  background: rgba(31, 41, 55, 0.9);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: rgba(31, 41, 55, 0.6);
+  background: linear-gradient(145deg, #1f2937, #111827);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .card h2 {
@@ -96,6 +97,9 @@ body {
   font-size: 20px;
 }
 
+/* =========================
+   6. METRICS (SENSOR UI)
+========================= */
 .metric {
   font-size: 44px;
   font-weight: bold;
@@ -109,6 +113,9 @@ body {
   color: var(--muted);
 }
 
+/* =========================
+   7. BUTTONS
+========================= */
 .btn-row {
   display: flex;
   gap: 8px;
@@ -124,12 +131,20 @@ button {
   padding: 10px 14px;
   cursor: pointer;
   font-weight: bold;
+  transition: all 0.2s ease;
 }
 
 button:hover {
   opacity: 0.9;
 }
 
+button:active {
+  transform: scale(0.8);
+}
+
+/* =========================
+   8. FORM
+========================= */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -146,6 +161,39 @@ input {
   color: var(--text);
 }
 
+/* =========================
+   9. STATUS & ALERT
+========================= */
+.status-pill {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #22c55e);
+  font-weight: bold;
+}
+
+.fire-alert {
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.7);
+  color: #fecaca;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.hidden {
+  display: none;
+}
+
+/* =========================
+   10. LOG / HISTORY
+========================= */
 .log-card ul {
   margin: 0;
   padding-left: 18px;
@@ -161,8 +209,12 @@ input {
   font-size: 13px;
 }
 
+/* =========================
+   11. BADGES
+========================= */
 .badge-on {
   color: #86efac;
+  text-shadow: 0 0 8px #22c55e;
 }
 
 .badge-off {
@@ -177,6 +229,9 @@ input {
   color: #fcd34d;
 }
 
+/* =========================
+   12. RESPONSIVE
+========================= */
 @media (max-width: 768px) {
   .topbar {
     flex-direction: column;
