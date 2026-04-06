@@ -1,0 +1,1433 @@
+[
+  {
+    "time": "2026-04-06T17:22:13.704Z",
+    "temperature": 29.5,
+    "light": 591,
+    "smoke": 81,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:16.709Z",
+    "temperature": 30,
+    "light": 605,
+    "smoke": 77,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:19.710Z",
+    "temperature": 30.4,
+    "light": 589,
+    "smoke": 77,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:22.716Z",
+    "temperature": 30.6,
+    "light": 631,
+    "smoke": 75,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:25.727Z",
+    "temperature": 30.4,
+    "light": 599,
+    "smoke": 79,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:28.736Z",
+    "temperature": 30.9,
+    "light": 638,
+    "smoke": 78,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:31.735Z",
+    "temperature": 30.8,
+    "light": 637,
+    "smoke": 78,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:34.742Z",
+    "temperature": 30.7,
+    "light": 666,
+    "smoke": 78,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:37.743Z",
+    "temperature": 31,
+    "light": 706,
+    "smoke": 80,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:40.747Z",
+    "temperature": 30.7,
+    "light": 715,
+    "smoke": 77,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:43.759Z",
+    "temperature": 30.9,
+    "light": 692,
+    "smoke": 72,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:46.769Z",
+    "temperature": 30.6,
+    "light": 717,
+    "smoke": 67,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:49.781Z",
+    "temperature": 30.8,
+    "light": 758,
+    "smoke": 63,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:52.790Z",
+    "temperature": 31.2,
+    "light": 752,
+    "smoke": 61,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:55.805Z",
+    "temperature": 31,
+    "light": 774,
+    "smoke": 61,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:22:58.806Z",
+    "temperature": 30.7,
+    "light": 727,
+    "smoke": 60,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:01.820Z",
+    "temperature": 30.2,
+    "light": 753,
+    "smoke": 61,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:04.832Z",
+    "temperature": 30,
+    "light": 775,
+    "smoke": 58,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:07.839Z",
+    "temperature": 29.8,
+    "light": 765,
+    "smoke": 59,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:10.854Z",
+    "temperature": 29.3,
+    "light": 792,
+    "smoke": 61,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:13.862Z",
+    "temperature": 29.3,
+    "light": 773,
+    "smoke": 65,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:16.864Z",
+    "temperature": 29.1,
+    "light": 785,
+    "smoke": 60,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:19.878Z",
+    "temperature": 29.6,
+    "light": 749,
+    "smoke": 59,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:22.887Z",
+    "temperature": 29.8,
+    "light": 775,
+    "smoke": 62,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:25.888Z",
+    "temperature": 29.4,
+    "light": 734,
+    "smoke": 57,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:28.900Z",
+    "temperature": 29.4,
+    "light": 712,
+    "smoke": 57,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:31.901Z",
+    "temperature": 29.5,
+    "light": 729,
+    "smoke": 52,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:34.902Z",
+    "temperature": 29.4,
+    "light": 687,
+    "smoke": 52,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:37.909Z",
+    "temperature": 29.8,
+    "light": 704,
+    "smoke": 55,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:40.908Z",
+    "temperature": 29.8,
+    "light": 655,
+    "smoke": 55,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:43.909Z",
+    "temperature": 29.8,
+    "light": 644,
+    "smoke": 58,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:46.921Z",
+    "temperature": 29.5,
+    "light": 684,
+    "smoke": 53,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:49.929Z",
+    "temperature": 29.1,
+    "light": 642,
+    "smoke": 51,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:52.937Z",
+    "temperature": 29.1,
+    "light": 678,
+    "smoke": 49,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:55.948Z",
+    "temperature": 28.7,
+    "light": 709,
+    "smoke": 50,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:23:58.951Z",
+    "temperature": 28.4,
+    "light": 747,
+    "smoke": 45,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:01.965Z",
+    "temperature": 28.5,
+    "light": 716,
+    "smoke": 49,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:04.979Z",
+    "temperature": 29,
+    "light": 722,
+    "smoke": 52,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:07.993Z",
+    "temperature": 28.7,
+    "light": 674,
+    "smoke": 49,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:11.009Z",
+    "temperature": 28.3,
+    "light": 714,
+    "smoke": 50,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:14.010Z",
+    "temperature": 28.6,
+    "light": 679,
+    "smoke": 51,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:17.023Z",
+    "temperature": 29.1,
+    "light": 726,
+    "smoke": 51,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:20.035Z",
+    "temperature": 29.6,
+    "light": 730,
+    "smoke": 52,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:23.047Z",
+    "temperature": 29.4,
+    "light": 758,
+    "smoke": 56,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:26.060Z",
+    "temperature": 29.5,
+    "light": 714,
+    "smoke": 51,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:29.066Z",
+    "temperature": 29.1,
+    "light": 704,
+    "smoke": 54,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:32.078Z",
+    "temperature": 29.1,
+    "light": 717,
+    "smoke": 53,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:35.086Z",
+    "temperature": 29.2,
+    "light": 667,
+    "smoke": 54,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:38.099Z",
+    "temperature": 29.4,
+    "light": 630,
+    "smoke": 50,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:41.111Z",
+    "temperature": 29.2,
+    "light": 624,
+    "smoke": 48,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:44.114Z",
+    "temperature": 29.1,
+    "light": 641,
+    "smoke": 50,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:47.115Z",
+    "temperature": 29,
+    "light": 675,
+    "smoke": 49,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:50.128Z",
+    "temperature": 28.8,
+    "light": 699,
+    "smoke": 49,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:53.143Z",
+    "temperature": 29.1,
+    "light": 729,
+    "smoke": 51,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:56.154Z",
+    "temperature": 28.9,
+    "light": 747,
+    "smoke": 51,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:24:59.168Z",
+    "temperature": 28.5,
+    "light": 791,
+    "smoke": 49,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:02.172Z",
+    "temperature": 28.7,
+    "light": 821,
+    "smoke": 51,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:05.175Z",
+    "temperature": 28.6,
+    "light": 796,
+    "smoke": 54,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:08.186Z",
+    "temperature": 28.1,
+    "light": 755,
+    "smoke": 58,
+    "fan": true,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:11.198Z",
+    "temperature": 27.9,
+    "light": 749,
+    "smoke": 53,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:14.208Z",
+    "temperature": 27.8,
+    "light": 782,
+    "smoke": 50,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:17.221Z",
+    "temperature": 27.6,
+    "light": 745,
+    "smoke": 46,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:20.231Z",
+    "temperature": 27.6,
+    "light": 723,
+    "smoke": 42,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:23.243Z",
+    "temperature": 27.5,
+    "light": 748,
+    "smoke": 45,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:26.246Z",
+    "temperature": 27.6,
+    "light": 747,
+    "smoke": 41,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:29.260Z",
+    "temperature": 27.7,
+    "light": 715,
+    "smoke": 42,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:32.271Z",
+    "temperature": 27.7,
+    "light": 683,
+    "smoke": 41,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:35.281Z",
+    "temperature": 27.8,
+    "light": 669,
+    "smoke": 39,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:38.293Z",
+    "temperature": 27.6,
+    "light": 693,
+    "smoke": 35,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:41.297Z",
+    "temperature": 27.6,
+    "light": 740,
+    "smoke": 38,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:44.303Z",
+    "temperature": 27.8,
+    "light": 788,
+    "smoke": 42,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:47.307Z",
+    "temperature": 27.5,
+    "light": 763,
+    "smoke": 40,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:50.308Z",
+    "temperature": 27.9,
+    "light": 801,
+    "smoke": 39,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:53.314Z",
+    "temperature": 27.7,
+    "light": 817,
+    "smoke": 35,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:56.314Z",
+    "temperature": 27.5,
+    "light": 844,
+    "smoke": 34,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:25:59.325Z",
+    "temperature": 27.3,
+    "light": 811,
+    "smoke": 31,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:02.340Z",
+    "temperature": 27.2,
+    "light": 806,
+    "smoke": 30,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:05.355Z",
+    "temperature": 27.3,
+    "light": 763,
+    "smoke": 33,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:08.363Z",
+    "temperature": 27.8,
+    "light": 763,
+    "smoke": 28,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:11.377Z",
+    "temperature": 27.8,
+    "light": 731,
+    "smoke": 24,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:14.386Z",
+    "temperature": 27.4,
+    "light": 732,
+    "smoke": 22,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:17.388Z",
+    "temperature": 27.9,
+    "light": 772,
+    "smoke": 17,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:20.397Z",
+    "temperature": 28.1,
+    "light": 805,
+    "smoke": 13,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:23.405Z",
+    "temperature": 27.9,
+    "light": 823,
+    "smoke": 14,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:26.406Z",
+    "temperature": 27.6,
+    "light": 858,
+    "smoke": 9,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:29.417Z",
+    "temperature": 27.8,
+    "light": 837,
+    "smoke": 9,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:32.421Z",
+    "temperature": 27.4,
+    "light": 832,
+    "smoke": 11,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:35.429Z",
+    "temperature": 27.1,
+    "light": 842,
+    "smoke": 15,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:38.438Z",
+    "temperature": 27.5,
+    "light": 821,
+    "smoke": 12,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:41.449Z",
+    "temperature": 27.2,
+    "light": 845,
+    "smoke": 10,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:44.464Z",
+    "temperature": 27.5,
+    "light": 814,
+    "smoke": 12,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:47.467Z",
+    "temperature": 27.1,
+    "light": 815,
+    "smoke": 8,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:50.482Z",
+    "temperature": 26.6,
+    "light": 835,
+    "smoke": 6,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:53.497Z",
+    "temperature": 26.8,
+    "light": 852,
+    "smoke": 10,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:56.500Z",
+    "temperature": 26.8,
+    "light": 837,
+    "smoke": 5,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:26:59.503Z",
+    "temperature": 26.6,
+    "light": 833,
+    "smoke": 1,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:02.515Z",
+    "temperature": 26.9,
+    "light": 836,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:05.523Z",
+    "temperature": 26.6,
+    "light": 815,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:08.537Z",
+    "temperature": 26.5,
+    "light": 823,
+    "smoke": 4,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:11.545Z",
+    "temperature": 26.1,
+    "light": 835,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:14.552Z",
+    "temperature": 26.3,
+    "light": 795,
+    "smoke": 11,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:17.555Z",
+    "temperature": 25.9,
+    "light": 793,
+    "smoke": 6,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:20.568Z",
+    "temperature": 25.8,
+    "light": 784,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:23.578Z",
+    "temperature": 26.3,
+    "light": 833,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:26.578Z",
+    "temperature": 26.4,
+    "light": 871,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:29.582Z",
+    "temperature": 26.5,
+    "light": 848,
+    "smoke": 2,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:32.594Z",
+    "temperature": 26.2,
+    "light": 799,
+    "smoke": 4,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:35.608Z",
+    "temperature": 26.2,
+    "light": 805,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:38.608Z",
+    "temperature": 26.5,
+    "light": 834,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:41.620Z",
+    "temperature": 26.7,
+    "light": 833,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:44.633Z",
+    "temperature": 27.2,
+    "light": 856,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:47.639Z",
+    "temperature": 27.4,
+    "light": 902,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:50.651Z",
+    "temperature": 27.6,
+    "light": 892,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:53.654Z",
+    "temperature": 27.2,
+    "light": 912,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:56.656Z",
+    "temperature": 27.3,
+    "light": 924,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:27:59.658Z",
+    "temperature": 27.6,
+    "light": 903,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:02.671Z",
+    "temperature": 27.9,
+    "light": 947,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:05.682Z",
+    "temperature": 27.5,
+    "light": 909,
+    "smoke": 2,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:08.687Z",
+    "temperature": 27.6,
+    "light": 887,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:11.700Z",
+    "temperature": 27.4,
+    "light": 903,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:14.710Z",
+    "temperature": 27.7,
+    "light": 887,
+    "smoke": 1,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:17.714Z",
+    "temperature": 27.7,
+    "light": 900,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:20.721Z",
+    "temperature": 27.9,
+    "light": 851,
+    "smoke": 4,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:23.734Z",
+    "temperature": 27.9,
+    "light": 802,
+    "smoke": 5,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:26.747Z",
+    "temperature": 27.4,
+    "light": 849,
+    "smoke": 6,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:29.759Z",
+    "temperature": 27.7,
+    "light": 889,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:32.772Z",
+    "temperature": 27.3,
+    "light": 856,
+    "smoke": 10,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:35.780Z",
+    "temperature": 27.4,
+    "light": 806,
+    "smoke": 8,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:38.780Z",
+    "temperature": 27.6,
+    "light": 762,
+    "smoke": 5,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:41.791Z",
+    "temperature": 27.3,
+    "light": 807,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:44.804Z",
+    "temperature": 26.8,
+    "light": 777,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:47.804Z",
+    "temperature": 26.7,
+    "light": 758,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:50.805Z",
+    "temperature": 26.7,
+    "light": 729,
+    "smoke": 2,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:53.805Z",
+    "temperature": 27,
+    "light": 714,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:56.807Z",
+    "temperature": 27.5,
+    "light": 717,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:28:59.822Z",
+    "temperature": 27.6,
+    "light": 726,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:02.834Z",
+    "temperature": 27.2,
+    "light": 735,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:05.842Z",
+    "temperature": 26.9,
+    "light": 734,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:08.853Z",
+    "temperature": 27.3,
+    "light": 770,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:11.857Z",
+    "temperature": 27.3,
+    "light": 752,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:14.857Z",
+    "temperature": 27.5,
+    "light": 769,
+    "smoke": 1,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:17.871Z",
+    "temperature": 27.4,
+    "light": 807,
+    "smoke": 1,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:20.871Z",
+    "temperature": 27.3,
+    "light": 770,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:23.874Z",
+    "temperature": 27.7,
+    "light": 769,
+    "smoke": 1,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:26.882Z",
+    "temperature": 27.6,
+    "light": 730,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:29.896Z",
+    "temperature": 27.6,
+    "light": 734,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:32.904Z",
+    "temperature": 27.8,
+    "light": 717,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:35.914Z",
+    "temperature": 28.2,
+    "light": 715,
+    "smoke": 2,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:38.925Z",
+    "temperature": 28,
+    "light": 674,
+    "smoke": 6,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:41.938Z",
+    "temperature": 27.8,
+    "light": 705,
+    "smoke": 4,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:44.948Z",
+    "temperature": 27.4,
+    "light": 734,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:47.963Z",
+    "temperature": 27.2,
+    "light": 751,
+    "smoke": 0,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:50.978Z",
+    "temperature": 27.3,
+    "light": 734,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:53.978Z",
+    "temperature": 27.6,
+    "light": 751,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:56.993Z",
+    "temperature": 28,
+    "light": 729,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:29:59.996Z",
+    "temperature": 27.7,
+    "light": 686,
+    "smoke": 5,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:30:03.003Z",
+    "temperature": 27.2,
+    "light": 710,
+    "smoke": 7,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:30:06.012Z",
+    "temperature": 27.3,
+    "light": 672,
+    "smoke": 3,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  },
+  {
+    "time": "2026-04-06T17:30:09.011Z",
+    "temperature": 27.1,
+    "light": 719,
+    "smoke": 5,
+    "fan": false,
+    "light_dev": false,
+    "buzzer": false
+  }
+]

@@ -1,110 +1,274 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Home Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  
+  <title>SmartHome OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <!--========== HEADER ==========-->
-    <header class="topbar">
-      <div>
-        <h1>Smart Home IoT Dashboard</h1>
-        <p>Monitor environment and control devices remotely</p>
+
+  <!-- ========== LOGIN SCREEN ========== -->
+  <div id="loginScreen" class="login-screen">
+    <div class="login-bg-grid"></div>
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
+            <rect x="18" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
+            <rect x="2" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
+            <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
+          </svg>
+        </div>
+        <div>
+          <div class="login-title">SmartHome OS</div>
+          <div class="login-sub">v2.0 · IoT Control Center</div>
+        </div>
       </div>
-      <div class="status-pill" id="connectionStatus">Connecting...</div>
+
+      <div class="login-divider"></div>
+
+      <div class="form-field">
+        <label class="field-label">ACCESS KEY</label>
+        <input type="password" id="loginInput" class="field-input" placeholder="Enter password" autocomplete="off" />
+        <div id="loginError" class="login-error hidden">Incorrect password. Try again.</div>
+      </div>
+
+      <button class="login-btn" id="loginBtn">
+        <span>AUTHENTICATE</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="login-footer">
+        <span class="dot-live"></span> System Online · ESP32 Connected
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MAIN APP ========== -->
+  <div id="app" class="hidden">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="topbar-logo">
+          <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
+            <rect x="18" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
+            <rect x="2" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
+            <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
+          </svg>
+          <span class="topbar-name">SmartHome<span class="accent">OS</span></span>
+        </div>
+        <div class="topbar-subtitle">IoT Control Center · ESP32</div>
+      </div>
+      <div class="topbar-right">
+        <div class="status-pill" id="connectionStatus">
+          <span class="dot-status"></span>
+          <span>Connecting...</span>
+        </div>
+
+        <!-- VIEW MODE TOGGLE -->
+        <div class="view-mode-toggle" id="viewModeToggle" title="Switch view mode">
+          <button class="vm-btn vm-active" data-mode="simple">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
+            SIMPLE
+          </button>
+          <button class="vm-btn" data-mode="smart">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            SMART
+          </button>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <span class="theme-icon-dark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="theme-icon-light">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </span>
+        </button>
+      </div>
     </header>
 
-    <section id="fireAlert" class="fire-alert hidden">
-      FIRE ALERT: Smoke detected! Buzzer is active.
-    </section>
+    <!-- FIRE ALERT -->
+    <div id="fireAlert" class="fire-alert hidden">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      FIRE ALERT — Smoke detected! Buzzer active.
+    </div>
 
-    <section class="grid sensors">
-      <div class="card">
-        <h2>🌡 Temperature</h2>
-        <div class="metric"><span id="temperature">--</span><small>°C</small></div>
-      </div>
-      <div class="card">
-        <h2>💡 Light</h2>
-        <div class="metric"><span id="light">--</span><small>/1023</small></div>
-      </div>
-      <div class="card">
-        <h2>🌫 Smoke</h2>
-        <div class="metric"><span id="smoke">--</span><small>/1023</small></div>
-      </div>
-    </section>
+    <main class="main-content">
 
-    <section class="grid">
-      <div class="card">
-        <h2>📈 Realtime Chart</h2>
-        <canvas id="myChart"></canvas>
-      </div>
-    </section>
-
-    <section class="grid devices">
-      <div class="card">
-        <h2>🌀 Fan</h2>
-        <p>Status: <strong id="fanState">--</strong></p>
-        <p>Mode: <strong id="fanMode">--</strong></p>
-        <div class="btn-row">
-          <button data-device="fan" data-action="ON">On</button>
-          <button data-device="fan" data-action="OFF">Off</button>
-          <button data-device="fan" data-action="AUTO">Auto</button>
+      <!-- SENSOR ROW -->
+      <section class="sensor-row">
+        <div class="sensor-card" id="cardTemp">
+          <div class="sensor-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" stroke="currentColor" stroke-width="2"/></svg>
+            TEMPERATURE
+          </div>
+          <div class="sensor-value"><span id="temperature">--</span><span class="sensor-unit">°C</span></div>
+          <div class="sensor-bar-wrap"><div class="sensor-bar" id="barTemp"></div></div>
         </div>
-      </div>
-      <div class="card">
-        <h2>💡 Light</h2>
-        <p>Status: <strong id="lightState">--</strong></p>
-        <p>Mode: <strong id="lightMode">--</strong></p>
-        <div class="btn-row">
-          <button data-device="light" data-action="ON">On</button>
-          <button data-device="light" data-action="OFF">Off</button>
-          <button data-device="light" data-action="AUTO">Auto</button>
+        <div class="sensor-card" id="cardLight">
+          <div class="sensor-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            LIGHT INTENSITY
+          </div>
+          <div class="sensor-value"><span id="light">--</span><span class="sensor-unit">/1023</span></div>
+          <div class="sensor-bar-wrap"><div class="sensor-bar" id="barLight"></div></div>
         </div>
-      </div>
-      <div class="card">
-        <h2>🔔 Buzzer</h2>
-        <p>Status: <strong id="buzzerState">--</strong></p>
-        <button id="resetAlarmBtn">Reset Smoke Alert</button>
-      </div>
-    </section>
+        <div class="sensor-card" id="cardSmoke">
+          <div class="sensor-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 2c0 3.5 5 3.5 5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 2c0 3.5-5 3.5-5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 22H5a3 3 0 0 1 0-6h14a3 3 0 0 1 0 6h-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            SMOKE LEVEL
+          </div>
+          <div class="sensor-value"><span id="smoke">--</span><span class="sensor-unit">/1023</span></div>
+          <div class="sensor-bar-wrap"><div class="sensor-bar" id="barSmoke"></div></div>
+        </div>
+      </section>
 
-    <section class="grid bottom">
-      <div class="card">
-        <h2>Sensor Simulation</h2>
-        <div class="form-group">
-          <label>Temperature</label>
-          <input type="number" id="inputTemperature" value="29" step="0.1" />
+      <!-- CHART -->
+      <section class="card chart-card" data-section="smart">
+        <div class="card-header">
+          <span class="card-title">REALTIME TELEMETRY</span>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Temp</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>Light</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span>Smoke</span>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Light</label>
-          <input type="number" id="inputLight" value="600" />
-        </div>
-        <div class="form-group">
-          <label>Smoke</label>
-          <input type="number" id="inputSmoke" value="80" />
-        </div>
-        <button id="simulateBtn">Send Simulation Data</button>
-      </div>
+        <canvas id="myChart" height="80"></canvas>
+      </section>
 
-      <div class="card">
-        <h2>System Information</h2>
-        <p>Connected clients: <strong id="connectedDevices">0</strong></p>
-        <p>Last updated: <strong id="updatedAt">--</strong></p>
-        <p>Light threshold ON/OFF: <strong id="lightThreshold">--</strong></p>
-        <p>Fan threshold ON/OFF: <strong id="fanThreshold">--</strong></p>
-        <p>Smoke threshold: <strong id="smokeThreshold">--</strong></p>
-      </div>
-    </section>
+      <!-- DEVICES ROW -->
+      <section class="device-row">
+        <div class="device-card">
+          <div class="device-header">
+            <div class="device-icon fan-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2a2 2 0 0 1 2 2c0 1.5-2 4-2 4s-2-2.5-2-4a2 2 0 0 1 2-2z" fill="currentColor" opacity="0.7"/><path d="M22 12a2 2 0 0 1-2 2c-1.5 0-4-2-4-2s2.5-2 4-2a2 2 0 0 1 2 2z" fill="currentColor" opacity="0.7"/><path d="M12 22a2 2 0 0 1-2-2c0-1.5 2-4 2-4s2 2.5 2 4a2 2 0 0 1-2 2z" fill="currentColor" opacity="0.7"/><path d="M2 12a2 2 0 0 1 2-2c1.5 0 4 2 4 2s-2.5 2-4 2a2 2 0 0 1-2-2z" fill="currentColor" opacity="0.7"/></svg>
+            </div>
+            <div>
+              <div class="device-name">FAN</div>
+              <div class="device-status">
+                Status: <span id="fanState" class="state-badge">--</span>
+                &nbsp;·&nbsp; Mode: <span id="fanMode" class="mode-badge">--</span>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="ctrl-btn btn-on" data-device="fan" data-action="ON">ON</button>
+            <button class="ctrl-btn btn-off" data-device="fan" data-action="OFF">OFF</button>
+            <button class="ctrl-btn btn-auto" data-device="fan" data-action="AUTO">AUTO</button>
+          </div>
+        </div>
 
-    <section class="card log-card">
-      <h2>Event Logs</h2>
-      <ul id="logs"></ul>
-    </section>
+        <div class="device-card">
+          <div class="device-header">
+            <div class="device-icon light-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><line x1="9" y1="18" x2="15" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="22" x2="14" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="device-name">LIGHT</div>
+              <div class="device-status">
+                Status: <span id="lightState" class="state-badge">--</span>
+                &nbsp;·&nbsp; Mode: <span id="lightMode" class="mode-badge">--</span>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="ctrl-btn btn-on" data-device="light" data-action="ON">ON</button>
+            <button class="ctrl-btn btn-off" data-device="light" data-action="OFF">OFF</button>
+            <button class="ctrl-btn btn-auto" data-device="light" data-action="AUTO">AUTO</button>
+          </div>
+        </div>
+
+        <div class="device-card">
+          <div class="device-header">
+            <div class="device-icon buzzer-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="device-name">BUZZER</div>
+              <div class="device-status">
+                Status: <span id="buzzerState" class="state-badge">--</span>
+              </div>
+            </div>
+          </div>
+          <button class="ctrl-btn btn-reset" id="resetAlarmBtn">RESET ALARM</button>
+        </div>
+      </section>
+
+      <!-- BOTTOM ROW -->
+      <section class="bottom-row" data-section="smart">
+        <!-- SIMULATION -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">SENSOR SIMULATION</span>
+            <span class="card-badge">DEV MODE</span>
+          </div>
+          <div class="sim-fields">
+            <div class="sim-field">
+              <label class="field-label">TEMPERATURE (°C)</label>
+              <input type="number" id="inputTemperature" class="field-input" value="29" step="0.1" />
+            </div>
+            <div class="sim-field">
+              <label class="field-label">LIGHT (0–1023)</label>
+              <input type="number" id="inputLight" class="field-input" value="600" />
+            </div>
+            <div class="sim-field">
+              <label class="field-label">SMOKE (0–1023)</label>
+              <input type="number" id="inputSmoke" class="field-input" value="80" />
+            </div>
+          </div>
+          <button class="ctrl-btn btn-sim" id="simulateBtn">SEND SIMULATION DATA</button>
+        </div>
+
+        <!-- SYSTEM INFO -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">SYSTEM INFO</span>
+          </div>
+          <div class="sysinfo-grid">
+            <div class="sysinfo-row">
+              <span class="sysinfo-key">Connected Clients</span>
+              <span class="sysinfo-val" id="connectedDevices">0</span>
+            </div>
+            <div class="sysinfo-row">
+              <span class="sysinfo-key">Last Updated</span>
+              <span class="sysinfo-val mono" id="updatedAt">--</span>
+            </div>
+            <div class="sysinfo-divider"></div>
+            <div class="sysinfo-row">
+              <span class="sysinfo-key">Light Threshold ON/OFF</span>
+              <span class="sysinfo-val mono" id="lightThreshold">--</span>
+            </div>
+            <div class="sysinfo-row">
+              <span class="sysinfo-key">Fan Threshold ON/OFF</span>
+              <span class="sysinfo-val mono" id="fanThreshold">--</span>
+            </div>
+            <div class="sysinfo-row">
+              <span class="sysinfo-key">Smoke Threshold</span>
+              <span class="sysinfo-val mono" id="smokeThreshold">--</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENT LOGS -->
+      <section class="card log-card" data-section="smart">
+        <div class="card-header">
+          <span class="card-title">EVENT LOG</span>
+          <span class="log-count" id="logCount">0 entries</span>
+        </div>
+        <ul id="logs" class="log-list"></ul>
+      </section>
+
+    </main>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
