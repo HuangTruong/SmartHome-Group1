@@ -65,7 +65,7 @@ const state = {
   sensors: {
     temperature: 29,
     light: 600,
-    smoke: 80
+    smoke: 0
   },
 
   devices: {
@@ -76,7 +76,8 @@ const state = {
 
   modes: {
     light: 'AUTO',
-    fan: 'AUTO'
+    fan: 'AUTO',
+    buzzer: 'AUTO'
   },
 
   alerts: {
@@ -87,8 +88,7 @@ const state = {
     lightOn:  350,
     lightOff: 500,
     fanOn:    30,
-    fanOff:   28,
-    smoke:    250
+    fanOff:   28
   },
 
   system: {
@@ -168,10 +168,15 @@ function applyAutomation() {
   const { temperature, light, smoke } = state.sensors;
   const { thresholds, modes, devices } = state;
 
-  // Cảnh báo cháy
+  // Cảnh báo cháy (digital: smoke === 1)
   const hadFire = state.alerts.fire;
-  state.alerts.fire    = smoke >= thresholds.smoke;
-  state.devices.buzzer = state.alerts.fire;
+  state.alerts.fire = smoke === 1;
+
+  // Buzzer AUTO/MANUAL
+  if (modes.buzzer === 'AUTO') {
+    state.devices.buzzer = state.alerts.fire;
+  }
+  // Nếu MANUAL → giữ nguyên devices.buzzer do user điều khiển
 
   if (!hadFire && state.alerts.fire)  addLog('danger', '🔥 Phát hiện khói! Buzzer bật.');
   if (hadFire  && !state.alerts.fire) addLog('info',   '✅ Mức khói an toàn trở lại.');
@@ -222,20 +227,25 @@ app.post('/api/control/fan', (req, res) => {
   res.json({ success: true });
 });
 
-app.post('/api/simulate', (req, res) => {
-  const { temperature, light, smoke } = req.body;
-  if (typeof temperature === 'number') state.sensors.temperature = clamp(temperature, 0, 80);
-  if (typeof light       === 'number') state.sensors.light       = clamp(light, 0, 1023);
-  if (typeof smoke       === 'number') state.sensors.smoke       = clamp(smoke, 0, 1023);
+app.post('/api/control/buzzer', (req, res) => {
+  const { action } = req.body;
+  if (!['ON', 'OFF', 'AUTO'].includes(action))
+    return res.status(400).json({ error: 'Lệnh không hợp lệ' });
 
-  addLog('info', 'Giả lập dữ liệu cảm biến');
+  if (action === 'AUTO') { state.modes.buzzer = 'AUTO'; addLog('manual', 'Buzzer chuyển AUTO'); }
+  else { state.modes.buzzer = 'MANUAL'; state.devices.buzzer = action === 'ON'; addLog('manual', `User ${action} buzzer`); }
+
   applyAutomation(); broadcastState();
   res.json({ success: true });
 });
 
-app.post('/api/alarm/reset', (req, res) => {
-  state.sensors.smoke = 0;
-  addLog('info', 'Reset cảnh báo');
+app.post('/api/simulate', (req, res) => {
+  const { temperature, light, smoke } = req.body;
+  if (typeof temperature === 'number') state.sensors.temperature = clamp(temperature, 0, 80);
+  if (typeof light       === 'number') state.sensors.light       = clamp(light, 0, 1023);
+  if (typeof smoke       === 'number') state.sensors.smoke       = (smoke === 1) ? 1 : 0;
+
+  addLog('info', 'Giả lập dữ liệu cảm biến');
   applyAutomation(); broadcastState();
   res.json({ success: true });
 });
@@ -270,7 +280,7 @@ app.post('/api/esp/data', (req, res) => {
   const { temperature, light, smoke } = req.body;
   if (typeof temperature === 'number') state.sensors.temperature = clamp(temperature, 0, 80);
   if (typeof light       === 'number') state.sensors.light       = clamp(light, 0, 1023);
-  if (typeof smoke       === 'number') state.sensors.smoke       = clamp(smoke, 0, 1023);
+  if (typeof smoke       === 'number') state.sensors.smoke       = (smoke === 1) ? 1 : 0;
 
   addLog('iot', 'ESP gửi dữ liệu');
   applyAutomation(); broadcastState();
@@ -301,7 +311,7 @@ io.on('connection', (socket) => {
 setInterval(() => {
   state.sensors.temperature = Number(clamp(state.sensors.temperature + (Math.random() - 0.5), 20, 40).toFixed(1));
   state.sensors.light       = clamp(state.sensors.light + Math.floor(Math.random() * 100 - 50), 0, 1023);
-  state.sensors.smoke       = clamp(state.sensors.smoke + Math.floor(Math.random() * 10 - 5), 0, 400);
+  // Smoke: digital (0/1), không random — chỉ đổi khi user gửi từ Simulation
 
   applyAutomation();
   recordHistory();   // ← Ghi lịch sử mỗi 3 giây

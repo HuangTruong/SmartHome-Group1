@@ -3,8 +3,8 @@
   - Login screen with password gate
   - Dark / Light mode toggle
   - Realtime Socket.IO connection
-  - Chart rendering
-  - Device control API calls
+  - 3 separate chart rendering (Temp, Light, Smoke)
+  - Device control API calls (Fan, Light, Buzzer)
   - State rendering
 */
 
@@ -89,10 +89,8 @@ themeToggle.addEventListener('click', () => {
 });
 
 /* =============================================
-   CHART SETUP
+   3 SEPARATE CHARTS SETUP
 ============================================= */
-const ctx = document.getElementById('myChart').getContext('2d');
-
 function getChartGridColor() {
   return html.getAttribute('data-theme') === 'dark'
     ? 'rgba(255,255,255,0.06)'
@@ -105,89 +103,83 @@ function getChartTextColor() {
     : '#94a3b8';
 }
 
-const chart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: [],
-    datasets: [
-      {
-        label: 'Temperature (°C)',
+function createChart(canvasId, label, borderColor, yMin, yMax, stepped) {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  return new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: label,
         data: [],
-        borderColor: '#f87171',
+        borderColor: borderColor,
         borderWidth: 2,
         pointRadius: 3,
-        pointBackgroundColor: '#f87171',
-        tension: 0.4,
-        fill: false
-      },
-      {
-        label: 'Light',
-        data: [],
-        borderColor: '#fbbf24',
-        borderWidth: 2,
-        pointRadius: 3,
-        pointBackgroundColor: '#fbbf24',
-        tension: 0.4,
-        fill: false
-      },
-      {
-        label: 'Smoke',
-        data: [],
-        borderColor: '#94a3b8',
-        borderWidth: 2,
-        pointRadius: 3,
-        pointBackgroundColor: '#94a3b8',
-        tension: 0.4,
-        fill: false
-      }
-    ]
-  },
-  options: {
-    animation: false,
-    responsive: true,
-    interaction: { mode: 'index', intersect: false },
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        backgroundColor: '#111820',
-        borderColor: 'rgba(255,255,255,0.1)',
-        borderWidth: 1,
-        titleFont: { family: 'JetBrains Mono', size: 11 },
-        bodyFont: { family: 'JetBrains Mono', size: 11 },
-        titleColor: '#64748b',
-        bodyColor: '#e2e8f0',
-        padding: 10
-      }
+        pointBackgroundColor: borderColor,
+        tension: stepped ? 0 : 0.4,
+        fill: {
+          target: 'origin',
+          above: borderColor + '18'
+        },
+        stepped: stepped || false
+      }]
     },
-    scales: {
-      x: {
-        grid: { color: getChartGridColor() },
-        ticks: {
-          color: getChartTextColor(),
-          font: { family: 'JetBrains Mono', size: 10 },
-          maxTicksLimit: 8
+    options: {
+      animation: false,
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#111820',
+          borderColor: 'rgba(255,255,255,0.1)',
+          borderWidth: 1,
+          titleFont: { family: 'JetBrains Mono', size: 11 },
+          bodyFont: { family: 'JetBrains Mono', size: 11 },
+          titleColor: '#64748b',
+          bodyColor: '#e2e8f0',
+          padding: 10
         }
       },
-      y: {
-        beginAtZero: true,
-        grid: { color: getChartGridColor() },
-        ticks: {
-          color: getChartTextColor(),
-          font: { family: 'JetBrains Mono', size: 10 }
+      scales: {
+        x: {
+          grid: { color: getChartGridColor() },
+          ticks: {
+            color: getChartTextColor(),
+            font: { family: 'JetBrains Mono', size: 10 },
+            maxTicksLimit: 8
+          }
+        },
+        y: {
+          min: yMin,
+          max: yMax,
+          grid: { color: getChartGridColor() },
+          ticks: {
+            color: getChartTextColor(),
+            font: { family: 'JetBrains Mono', size: 10 },
+            stepSize: stepped ? 1 : undefined
+          }
         }
       }
     }
-  }
-});
+  });
+}
+
+const chartTemp  = createChart('chartTemp',  'Temperature (°C)', '#f87171', 15, 45, false);
+const chartLight = createChart('chartLight', 'Light',            '#fbbf24', 0, 1023, false);
+const chartSmoke = createChart('chartSmoke', 'Smoke',            '#94a3b8', -0.1, 1.3, true);
 
 function updateChartTheme() {
   const gridColor = getChartGridColor();
   const textColor = getChartTextColor();
-  chart.options.scales.x.grid.color = gridColor;
-  chart.options.scales.y.grid.color = gridColor;
-  chart.options.scales.x.ticks.color = textColor;
-  chart.options.scales.y.ticks.color = textColor;
-  chart.update();
+
+  [chartTemp, chartLight, chartSmoke].forEach(chart => {
+    chart.options.scales.x.grid.color = gridColor;
+    chart.options.scales.y.grid.color = gridColor;
+    chart.options.scales.x.ticks.color = textColor;
+    chart.options.scales.y.ticks.color = textColor;
+    chart.update();
+  });
 }
 
 /* =============================================
@@ -199,26 +191,25 @@ const el = {
   temperature:      document.getElementById('temperature'),
   light:            document.getElementById('light'),
   smoke:            document.getElementById('smoke'),
+  smokeStatus:      document.getElementById('smokeStatus'),
   barTemp:          document.getElementById('barTemp'),
   barLight:         document.getElementById('barLight'),
-  barSmoke:         document.getElementById('barSmoke'),
   lightState:       document.getElementById('lightState'),
   fanState:         document.getElementById('fanState'),
   buzzerState:      document.getElementById('buzzerState'),
   lightMode:        document.getElementById('lightMode'),
   fanMode:          document.getElementById('fanMode'),
+  buzzerMode:       document.getElementById('buzzerMode'),
   connectedDevices: document.getElementById('connectedDevices'),
   updatedAt:        document.getElementById('updatedAt'),
   lightThreshold:   document.getElementById('lightThreshold'),
   fanThreshold:     document.getElementById('fanThreshold'),
-  smokeThreshold:   document.getElementById('smokeThreshold'),
   logs:             document.getElementById('logs'),
   logCount:         document.getElementById('logCount'),
   inputTemperature: document.getElementById('inputTemperature'),
   inputLight:       document.getElementById('inputLight'),
   inputSmoke:       document.getElementById('inputSmoke'),
   simulateBtn:      document.getElementById('simulateBtn'),
-  resetAlarmBtn:    document.getElementById('resetAlarmBtn')
 };
 
 /* =============================================
@@ -259,10 +250,18 @@ function renderState(state) {
   el.light.textContent = light;
   el.smoke.textContent = smoke;
 
-  // Progress bars
+  // Progress bars (only for temp and light now)
   el.barTemp.style.width  = Math.min((temp / 40) * 100, 100) + '%';
   el.barLight.style.width = Math.min((light / 1023) * 100, 100) + '%';
-  el.barSmoke.style.width = Math.min((smoke / 400) * 100, 100) + '%';
+
+  // Smoke digital status display
+  if (smoke === 1) {
+    el.smokeStatus.textContent = 'CÓ KHÓI';
+    el.smokeStatus.className = 'smoke-status smoke-danger';
+  } else {
+    el.smokeStatus.textContent = 'AN TOÀN';
+    el.smokeStatus.className = 'smoke-status smoke-safe';
+  }
 
   // Devices
   el.fanState.innerHTML   = stateBadge(state.devices.fan);
@@ -270,15 +269,15 @@ function renderState(state) {
   el.buzzerState.innerHTML = stateBadge(state.devices.buzzer, 'RINGING', 'OFF');
 
   // Modes
-  el.fanMode.innerHTML   = modeBadge(state.modes.fan);
-  el.lightMode.innerHTML = modeBadge(state.modes.light);
+  el.fanMode.innerHTML    = modeBadge(state.modes.fan);
+  el.lightMode.innerHTML  = modeBadge(state.modes.light);
+  el.buzzerMode.innerHTML = modeBadge(state.modes.buzzer);
 
   // System info
   el.connectedDevices.textContent = state.system.connectedDevices;
   el.updatedAt.textContent        = formatTime(state.system.updatedAt);
   el.lightThreshold.textContent   = `${state.thresholds.lightOn} / ${state.thresholds.lightOff}`;
   el.fanThreshold.textContent     = `${state.thresholds.fanOn}°C / ${state.thresholds.fanOff}°C`;
-  el.smokeThreshold.textContent   = state.thresholds.smoke;
 
   // Fire alert
   el.fireAlert.classList.toggle('hidden', !state.alerts.fire);
@@ -361,9 +360,6 @@ el.simulateBtn.addEventListener('click', async () => {
   });
 });
 
-el.resetAlarmBtn.addEventListener('click', async () => {
-  await callApi('/api/alarm/reset');
-});
 
 /* =============================================
    SOCKET.IO
@@ -388,16 +384,32 @@ socket.on('sensorData', (data) => {
   if (!data) return;
 
   const time = new Date().toLocaleTimeString('vi-VN');
+  const MAX_POINTS = 20;
 
-  chart.data.labels.push(time);
-  chart.data.datasets[0].data.push(data.temperature);
-  chart.data.datasets[1].data.push(data.light);
-  chart.data.datasets[2].data.push(data.smoke);
-
-  if (chart.data.labels.length > 20) {
-    chart.data.labels.shift();
-    chart.data.datasets.forEach(ds => ds.data.shift());
+  // Temperature chart
+  chartTemp.data.labels.push(time);
+  chartTemp.data.datasets[0].data.push(data.temperature);
+  if (chartTemp.data.labels.length > MAX_POINTS) {
+    chartTemp.data.labels.shift();
+    chartTemp.data.datasets[0].data.shift();
   }
+  chartTemp.update('none');
 
-  chart.update('none');
+  // Light chart
+  chartLight.data.labels.push(time);
+  chartLight.data.datasets[0].data.push(data.light);
+  if (chartLight.data.labels.length > MAX_POINTS) {
+    chartLight.data.labels.shift();
+    chartLight.data.datasets[0].data.shift();
+  }
+  chartLight.update('none');
+
+  // Smoke chart
+  chartSmoke.data.labels.push(time);
+  chartSmoke.data.datasets[0].data.push(data.smoke);
+  if (chartSmoke.data.labels.length > MAX_POINTS) {
+    chartSmoke.data.labels.shift();
+    chartSmoke.data.datasets[0].data.shift();
+  }
+  chartSmoke.update('none');
 });

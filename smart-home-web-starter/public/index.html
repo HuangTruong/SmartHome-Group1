@@ -125,24 +125,36 @@
         <div class="sensor-card" id="cardSmoke">
           <div class="sensor-label">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 2c0 3.5 5 3.5 5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 2c0 3.5-5 3.5-5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 22H5a3 3 0 0 1 0-6h14a3 3 0 0 1 0 6h-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            SMOKE LEVEL
+            SMOKE DETECTOR
           </div>
-          <div class="sensor-value"><span id="smoke">--</span><span class="sensor-unit">/1023</span></div>
-          <div class="sensor-bar-wrap"><div class="sensor-bar" id="barSmoke"></div></div>
+          <div class="sensor-value"><span id="smoke">--</span></div>
+          <div class="smoke-status" id="smokeStatus">AN TOÀN</div>
         </div>
       </section>
 
-      <!-- CHART -->
-      <section class="card chart-card" data-section="smart">
-        <div class="card-header">
-          <span class="card-title">REALTIME TELEMETRY</span>
-          <div class="chart-legend">
-            <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span>Temp</span>
-            <span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>Light</span>
-            <span class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span>Smoke</span>
+      <!-- CHARTS -->
+      <section class="charts-grid" data-section="smart">
+        <div class="card chart-card">
+          <div class="card-header">
+            <span class="card-title">🌡️ TEMPERATURE</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#f87171"></span>°C</span>
           </div>
+          <canvas id="chartTemp" height="70"></canvas>
         </div>
-        <canvas id="myChart" height="80"></canvas>
+        <div class="card chart-card">
+          <div class="card-header">
+            <span class="card-title">💡 LIGHT INTENSITY</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#fbbf24"></span>Lux</span>
+          </div>
+          <canvas id="chartLight" height="70"></canvas>
+        </div>
+        <div class="card chart-card">
+          <div class="card-header">
+            <span class="card-title">🔥 SMOKE DETECTOR</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span>Digital</span>
+          </div>
+          <canvas id="chartSmoke" height="70"></canvas>
+        </div>
       </section>
 
       <!-- DEVICES ROW -->
@@ -196,10 +208,15 @@
               <div class="device-name">BUZZER</div>
               <div class="device-status">
                 Status: <span id="buzzerState" class="state-badge">--</span>
+                &nbsp;·&nbsp; Mode: <span id="buzzerMode" class="mode-badge">--</span>
               </div>
             </div>
           </div>
-          <button class="ctrl-btn btn-reset" id="resetAlarmBtn">RESET ALARM</button>
+          <div class="btn-row">
+            <button class="ctrl-btn btn-on" data-device="buzzer" data-action="ON">ON</button>
+            <button class="ctrl-btn btn-off" data-device="buzzer" data-action="OFF">OFF</button>
+            <button class="ctrl-btn btn-auto" data-device="buzzer" data-action="AUTO">AUTO</button>
+          </div>
         </div>
       </section>
 
@@ -221,8 +238,11 @@
               <input type="number" id="inputLight" class="field-input" value="600" />
             </div>
             <div class="sim-field">
-              <label class="field-label">SMOKE (0–1023)</label>
-              <input type="number" id="inputSmoke" class="field-input" value="80" />
+              <label class="field-label">SMOKE (Digital)</label>
+              <select id="inputSmoke" class="field-input">
+                <option value="0" selected>0 — AN TOÀN</option>
+                <option value="1">1 — CÓ KHÓI</option>
+              </select>
             </div>
           </div>
           <button class="ctrl-btn btn-sim" id="simulateBtn">SEND SIMULATION DATA</button>
@@ -252,8 +272,8 @@
               <span class="sysinfo-val mono" id="fanThreshold">--</span>
             </div>
             <div class="sysinfo-row">
-              <span class="sysinfo-key">Smoke Threshold</span>
-              <span class="sysinfo-val mono" id="smokeThreshold">--</span>
+              <span class="sysinfo-key">Smoke Type</span>
+              <span class="sysinfo-val mono">Digital (0/1)</span>
             </div>
           </div>
         </div>
