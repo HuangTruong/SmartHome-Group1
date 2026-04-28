@@ -270,6 +270,12 @@ app.post("/api/simulate", (req, res) => {
 
   addLog("info", "Giả lập dữ liệu cảm biến");
   applyAutomation();
+  // Emit sensorData for chart updates
+  io.emit('sensorData', {
+    temperature: state.sensors.temperature,
+    light: state.sensors.light,
+    smoke: state.sensors.smoke,
+  });
   broadcastState();
   res.json({ success: true });
 });
@@ -329,6 +335,11 @@ io.on("connection", (socket) => {
   addLog("info", "Client kết nối");
   socket.emit("state:update", state);
   broadcastState();
+  socket.emit('sensorData', {
+    temperature: state.sensors.temperature,
+    light: state.sensors.light,
+    smoke: state.sensors.smoke,
+  });
 
   socket.on("disconnect", () => {
     state.system.connectedDevices = Math.max(
@@ -341,23 +352,33 @@ io.on("connection", (socket) => {
 });
 // #endregion
 
-// // #region ===== SIMULATION LOOP =====
-// setInterval(() => {
-//   state.sensors.temperature = Number(clamp(state.sensors.temperature + (Math.random() - 0.5), 20, 40).toFixed(1));
-//   state.sensors.light       = clamp(state.sensors.light + Math.floor(Math.random() * 100 - 50), 0, 1023);
-//   // Smoke: digital (0/1), không random — chỉ đổi khi user gửi từ Simulation
+// #region ===== SIMULATION LOOP =====
+setInterval(() => {
+  state.sensors.temperature = Number(
+    clamp(state.sensors.temperature + (Math.random() - 0.5), 20, 40).toFixed(1)
+  );
 
-//   applyAutomation();
-//   recordHistory();   // ← Ghi lịch sử mỗi 3 giây
-//   broadcastState();
+  state.sensors.light = clamp(
+    state.sensors.light + Math.floor(Math.random() * 100 - 50),
+    0,
+    1023
+  );
 
-//   io.emit('sensorData', {
-//     temperature: state.sensors.temperature,
-//     light:       state.sensors.light,
-//     smoke:       state.sensors.smoke
-//   });
-// }, 3000);
-// // #endregion
+  // Smoke: digital (0/1), không random — chỉ đổi khi user gửi từ Simulation
+
+  applyAutomation();
+  recordHistory();   // ← Ghi lịch sử mỗi 3 giây
+  broadcastState();
+
+  io.emit('sensorData', {
+    temperature: state.sensors.temperature,
+    light: state.sensors.light,
+    smoke: state.sensors.smoke
+  });
+
+}, 3000);
+// #endregion
+
 
 // #region ===== START SERVER =====
 const PORT = 3000;
