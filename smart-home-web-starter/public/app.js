@@ -14,10 +14,10 @@
 const CORRECT_PASSWORD = '1234'; // Đổi mật khẩu tại đây
 
 const loginScreen = document.getElementById('loginScreen');
-const loginInput  = document.getElementById('loginInput');
-const loginBtn    = document.getElementById('loginBtn');
-const loginError  = document.getElementById('loginError');
-const appEl       = document.getElementById('app');
+const loginInput = document.getElementById('loginInput');
+const loginBtn = document.getElementById('loginBtn');
+const loginError = document.getElementById('loginError');
+const appEl = document.getElementById('app');
 
 function doLogin() {
   const val = loginInput.value.trim();
@@ -165,9 +165,9 @@ function createChart(canvasId, label, borderColor, yMin, yMax, stepped) {
   });
 }
 
-const chartTemp  = createChart('chartTemp',  'Temperature (°C)', '#f87171', 15, 45, false);
-const chartLight = createChart('chartLight', 'Light',            '#fbbf24', 0, 1023, false);
-const chartSmoke = createChart('chartSmoke', 'Smoke',            '#94a3b8', -0.1, 1.3, true);
+const chartTemp = createChart('chartTemp', 'Temperature (°C)', '#f87171', 15, 45, false);
+const chartLight = createChart('chartLight', 'Light', '#fbbf24', 0, 1023, false);
+const chartSmoke = createChart('chartSmoke', 'Smoke', '#94a3b8', -0.1, 1.3, true);
 
 function updateChartTheme() {
   const gridColor = getChartGridColor();
@@ -187,29 +187,29 @@ function updateChartTheme() {
 ============================================= */
 const el = {
   connectionStatus: document.getElementById('connectionStatus'),
-  fireAlert:        document.getElementById('fireAlert'),
-  temperature:      document.getElementById('temperature'),
-  light:            document.getElementById('light'),
-  smoke:            document.getElementById('smoke'),
-  smokeStatus:      document.getElementById('smokeStatus'),
-  barTemp:          document.getElementById('barTemp'),
-  barLight:         document.getElementById('barLight'),
-  lightState:       document.getElementById('lightState'),
-  fanState:         document.getElementById('fanState'),
-  buzzerState:      document.getElementById('buzzerState'),
-  lightMode:        document.getElementById('lightMode'),
-  fanMode:          document.getElementById('fanMode'),
-  buzzerMode:       document.getElementById('buzzerMode'),
+  fireAlert: document.getElementById('fireAlert'),
+  temperature: document.getElementById('temperature'),
+  light: document.getElementById('light'),
+  smoke: document.getElementById('smoke'),
+  smokeStatus: document.getElementById('smokeStatus'),
+  barTemp: document.getElementById('barTemp'),
+  barLight: document.getElementById('barLight'),
+  lightState: document.getElementById('lightState'),
+  fanState: document.getElementById('fanState'),
+  buzzerState: document.getElementById('buzzerState'),
+  lightMode: document.getElementById('lightMode'),
+  fanMode: document.getElementById('fanMode'),
+  buzzerMode: document.getElementById('buzzerMode'),
   connectedDevices: document.getElementById('connectedDevices'),
-  updatedAt:        document.getElementById('updatedAt'),
-  lightThreshold:   document.getElementById('lightThreshold'),
-  fanThreshold:     document.getElementById('fanThreshold'),
-  logs:             document.getElementById('logs'),
-  logCount:         document.getElementById('logCount'),
+  updatedAt: document.getElementById('updatedAt'),
+  lightThreshold: document.getElementById('lightThreshold'),
+  fanThreshold: document.getElementById('fanThreshold'),
+  logs: document.getElementById('logs'),
+  logCount: document.getElementById('logCount'),
   inputTemperature: document.getElementById('inputTemperature'),
-  inputLight:       document.getElementById('inputLight'),
-  inputSmoke:       document.getElementById('inputSmoke'),
-  simulateBtn:      document.getElementById('simulateBtn'),
+  inputLight: document.getElementById('inputLight'),
+  inputSmoke: document.getElementById('inputSmoke'),
+  simulateBtn: document.getElementById('simulateBtn'),
 };
 
 /* =============================================
@@ -242,7 +242,7 @@ function renderState(state) {
   if (!state) return;
 
   // Sensors
-  const temp  = state.sensors.temperature;
+  const temp = state.sensors.temperature;
   const light = state.sensors.light;
   const smoke = state.sensors.smoke;
 
@@ -251,7 +251,7 @@ function renderState(state) {
   el.smoke.textContent = smoke;
 
   // Progress bars (only for temp and light now)
-  el.barTemp.style.width  = Math.min((temp / 40) * 100, 100) + '%';
+  el.barTemp.style.width = Math.min((temp / 40) * 100, 100) + '%';
   el.barLight.style.width = Math.min((light / 1023) * 100, 100) + '%';
 
   // Smoke digital status display
@@ -264,20 +264,20 @@ function renderState(state) {
   }
 
   // Devices
-  el.fanState.innerHTML   = stateBadge(state.devices.fan);
+  el.fanState.innerHTML = stateBadge(state.devices.fan);
   el.lightState.innerHTML = stateBadge(state.devices.light);
   el.buzzerState.innerHTML = stateBadge(state.devices.buzzer, 'RINGING', 'OFF');
 
   // Modes
-  el.fanMode.innerHTML    = modeBadge(state.modes.fan);
-  el.lightMode.innerHTML  = modeBadge(state.modes.light);
+  el.fanMode.innerHTML = modeBadge(state.modes.fan);
+  el.lightMode.innerHTML = modeBadge(state.modes.light);
   el.buzzerMode.innerHTML = modeBadge(state.modes.buzzer);
 
   // System info
   el.connectedDevices.textContent = state.system.connectedDevices;
-  el.updatedAt.textContent        = formatTime(state.system.updatedAt);
-  el.lightThreshold.textContent   = `${state.thresholds.lightOn} / ${state.thresholds.lightOff}`;
-  el.fanThreshold.textContent     = `${state.thresholds.fanOn}°C / ${state.thresholds.fanOff}°C`;
+  el.updatedAt.textContent = formatTime(state.system.updatedAt);
+  el.lightThreshold.textContent = `${state.thresholds.lightOn} / ${state.thresholds.lightOff}`;
+  el.fanThreshold.textContent = `${state.thresholds.fanOn}°C / ${state.thresholds.fanOff}°C`;
 
   // Fire alert
   el.fireAlert.classList.toggle('hidden', !state.alerts.fire);
@@ -289,11 +289,11 @@ function renderState(state) {
     li.className = 'log-item';
 
     const dotClass = {
-      info:   'log-dot-info',
+      info: 'log-dot-info',
       danger: 'log-dot-danger',
-      auto:   'log-dot-auto',
+      auto: 'log-dot-auto',
       manual: 'log-dot-manual',
-      iot:    'log-dot-iot'
+      iot: 'log-dot-iot'
     }[log.type] || 'log-dot-info';
 
     li.innerHTML = `
@@ -355,8 +355,8 @@ document.querySelectorAll('button[data-device]').forEach((button) => {
 el.simulateBtn.addEventListener('click', async () => {
   await callApi('/api/simulate', {
     temperature: Number(el.inputTemperature.value),
-    light:       Number(el.inputLight.value),
-    smoke:       Number(el.inputSmoke.value)
+    light: Number(el.inputLight.value),
+    smoke: Number(el.inputSmoke.value)
   });
 });
 
@@ -550,15 +550,29 @@ socket.on('sensorData', (data) => {
 
   recognition.addEventListener('result', async (event) => {
     const transcript = event.results[0][0].transcript;
-    showToast(`"${transcript}"`, 'info');
+    showToast(`🎙️ "${transcript}"`, 'info');
 
-    const command = parseCommand(transcript);
-    if (command) {
-      const deviceName = DEVICE_NAME_VI[command.device];
-      showToast(`${deviceName} → ${command.action}`, 'success');
-      await callApi(`/api/control/${command.device}`, { action: command.action });
-    } else {
-      showToast(`Không nhận ra lệnh: "${transcript}"`, 'error');
+    try {
+      const res = await callApi('/api/voice-intent', { transcript });
+
+      if (!res || !res.success) {
+        showToast('❌ Lỗi xử lý lệnh', 'error');
+        return;
+      }
+
+      if (res.intents.length === 0) {
+        showToast(`❓ Không hiểu: "${transcript}"`, 'error');
+        return;
+      }
+
+      const summary = res.intents
+        .map(i => `${i.device} → ${i.action}`)
+        .join(', ');
+      showToast(`✅ ${summary}`, 'success');
+
+    } catch (err) {
+      console.error(err);
+      showToast('❌ Không kết nối được server', 'error');
     }
   });
 
