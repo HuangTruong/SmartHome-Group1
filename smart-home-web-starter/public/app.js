@@ -413,3 +413,173 @@ socket.on('sensorData', (data) => {
   }
   chartSmoke.update('none');
 });
+
+/* =============================================
+   VOICE CONTROL (Web Speech API — vi-VN)
+============================================= */
+(function initVoiceControl() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const voiceBtn = document.getElementById('voiceBtn');
+  const voiceLabel = voiceBtn.querySelector('.voice-label');
+
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.className = 'voice-toast';
+  toast.innerHTML = '<span class="voice-toast-icon">🎙️</span><span class="voice-toast-text"></span>';
+  document.body.appendChild(toast);
+  let toastTimer = null;
+
+  function showToast(message, type = 'info') {
+    const textEl = toast.querySelector('.voice-toast-text');
+    textEl.textContent = message;
+    toast.className = 'voice-toast ' + type;
+
+    // Icons per type
+    const iconEl = toast.querySelector('.voice-toast-icon');
+    if (type === 'success') iconEl.textContent = '✅';
+    else if (type === 'error') iconEl.textContent = '❌';
+    else iconEl.textContent = '🎙️';
+
+    clearTimeout(toastTimer);
+    requestAnimationFrame(() => {
+      toast.classList.add('show');
+    });
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3500);
+  }
+
+  if (!SpeechRecognition) {
+    voiceBtn.addEventListener('click', () => {
+      showToast('Trình duyệt không hỗ trợ nhận dạng giọng nói', 'error');
+    });
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'vi-VN';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  recognition.continuous = false;
+
+  let isListening = false;
+
+  function startListening() {
+    if (isListening) return;
+    try {
+      recognition.start();
+      isListening = true;
+      voiceBtn.classList.add('listening');
+      voiceLabel.textContent = 'LISTENING...';
+      showToast('Đang nghe... Hãy nói lệnh', 'info');
+    } catch (e) {
+      console.error('Voice start error:', e);
+    }
+  }
+
+  function stopListening() {
+    if (!isListening) return;
+    recognition.stop();
+    isListening = false;
+    voiceBtn.classList.remove('listening');
+    voiceLabel.textContent = 'VOICE';
+  }
+
+  voiceBtn.addEventListener('click', () => {
+    if (isListening) {
+      stopListening();
+    } else {
+      startListening();
+    }
+  });
+
+  // Normalize Vietnamese text for command matching
+  function normalize(str) {
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd')
+      .replace(/Đ/g, 'D')
+      .trim();
+  }
+
+  // Command mapping
+  const DEVICE_MAP = {
+    'quat': 'fan',
+    'den': 'light',
+    'coi': 'buzzer',
+  };
+
+  function parseCommand(transcript) {
+    const raw = normalize(transcript);
+
+    // Check for AUTO command: "quạt auto", "đèn auto", "còi auto"
+    for (const [keyword, device] of Object.entries(DEVICE_MAP)) {
+      if (raw.includes(keyword) && raw.includes('auto')) {
+        return { device, action: 'AUTO' };
+      }
+    }
+
+    // Check for ON command: "bật quạt", "bật đèn", "bật còi"
+    if (raw.includes('bat')) {
+      for (const [keyword, device] of Object.entries(DEVICE_MAP)) {
+        if (raw.includes(keyword)) {
+          return { device, action: 'ON' };
+        }
+      }
+    }
+
+    // Check for OFF command: "tắt quạt", "tắt đèn", "tắt còi"
+    if (raw.includes('tat')) {
+      for (const [keyword, device] of Object.entries(DEVICE_MAP)) {
+        if (raw.includes(keyword)) {
+          return { device, action: 'OFF' };
+        }
+      }
+    }
+
+    return null;
+  }
+
+  const DEVICE_NAME_VI = {
+    fan: 'Quạt',
+    light: 'Đèn',
+    buzzer: 'Còi',
+  };
+
+  recognition.addEventListener('result', async (event) => {
+    const transcript = event.results[0][0].transcript;
+    showToast(`"${transcript}"`, 'info');
+
+    const command = parseCommand(transcript);
+    if (command) {
+      const deviceName = DEVICE_NAME_VI[command.device];
+      showToast(`${deviceName} → ${command.action}`, 'success');
+      await callApi(`/api/control/${command.device}`, { action: command.action });
+    } else {
+      showToast(`Không nhận ra lệnh: "${transcript}"`, 'error');
+    }
+  });
+
+  recognition.addEventListener('end', () => {
+    isListening = false;
+    voiceBtn.classList.remove('listening');
+    voiceLabel.textContent = 'VOICE';
+  });
+
+  recognition.addEventListener('error', (event) => {
+    console.error('Speech error:', event.error);
+    isListening = false;
+    voiceBtn.classList.remove('listening');
+    voiceLabel.textContent = 'VOICE';
+
+    if (event.error === 'no-speech') {
+      showToast('Không nghe thấy giọng nói', 'error');
+    } else if (event.error === 'not-allowed') {
+      showToast('Microphone bị chặn — hãy cấp quyền', 'error');
+    } else {
+      showToast(`Lỗi: ${event.error}`, 'error');
+    }
+  });
+})();

@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="vi" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SmartHome OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- ========== LOGIN SCREEN ========== -->
@@ -19,10 +23,10 @@
       <div class="login-logo">
         <div class="login-logo-icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect x="2" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
-            <rect x="18" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
-            <rect x="2" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
-            <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
+            <rect x="2" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.9" />
+            <rect x="18" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.5" />
+            <rect x="2" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.5" />
+            <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.9" />
           </svg>
         </div>
         <div>
@@ -41,7 +45,10 @@
 
       <button class="login-btn" id="loginBtn">
         <span>AUTHENTICATE</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
       </button>
 
       <div class="login-footer">
@@ -58,10 +65,10 @@
       <div class="topbar-left">
         <div class="topbar-logo">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
-            <rect x="2" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
-            <rect x="18" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
-            <rect x="2" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.5"/>
-            <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.9"/>
+            <rect x="2" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.9" />
+            <rect x="18" y="2" width="12" height="12" rx="2" fill="currentColor" opacity="0.5" />
+            <rect x="2" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.5" />
+            <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor" opacity="0.9" />
           </svg>
           <span class="topbar-name">SmartHome<span class="accent">OS</span></span>
         </div>
@@ -76,21 +83,57 @@
         <!-- VIEW MODE TOGGLE -->
         <div class="view-mode-toggle" id="viewModeToggle" title="Switch view mode">
           <button class="vm-btn vm-active" data-mode="simple">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+            </svg>
             SIMPLE
           </button>
           <button class="vm-btn" data-mode="smart">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
             SMART
           </button>
         </div>
 
+        <!-- VOICE CONTROL -->
+        <button class="voice-btn" id="voiceBtn" title="Voice control (Vietnamese)">
+          <svg class="voice-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" stroke-width="2" />
+            <path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <span class="voice-label">VOICE</span>
+        </button>
+
         <button class="theme-toggle" id="themeToggle" title="Toggle theme">
           <span class="theme-icon-dark">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
           </span>
           <span class="theme-icon-light">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" />
+              <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+              <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            </svg>
           </span>
         </button>
       </div>
@@ -98,8 +141,23 @@
 
     <!-- FIRE ALERT -->
     <div id="fireAlert" class="fire-alert hidden">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+          stroke="currentColor" stroke-width="2" />
+        <line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
       FIRE ALERT — Smoke detected! Buzzer active.
+    </div>
+
+    <!-- SUMMER BANNER -->
+    <div class="summer-banner" data-section="simple">
+      <div class="summer-marquee">
+        ☀️ &nbsp; Nhóm 1 &nbsp;·&nbsp; IoT &nbsp;·&nbsp; NT131.Q24 &nbsp;·&nbsp;
+        ☀️ &nbsp; Nhóm 1 &nbsp;·&nbsp; IoT &nbsp;·&nbsp; NT131.Q24 &nbsp;·&nbsp;
+        ☀️ &nbsp; Nhóm 1 &nbsp;·&nbsp; IoT &nbsp;·&nbsp; NT131.Q24 &nbsp;·&nbsp;
+        ☀️ &nbsp; Nhóm 1 &nbsp;·&nbsp; IoT &nbsp;·&nbsp; NT131.Q24 &nbsp;·&nbsp;
+      </div>
     </div>
 
     <main class="main-content">
@@ -108,27 +166,174 @@
       <section class="sensor-row">
         <div class="sensor-card" id="cardTemp">
           <div class="sensor-label">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" stroke="currentColor" stroke-width="2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" stroke="currentColor"
+                stroke-width="2" />
+            </svg>
             TEMPERATURE
           </div>
           <div class="sensor-value"><span id="temperature">--</span><span class="sensor-unit">°C</span></div>
-          <div class="sensor-bar-wrap"><div class="sensor-bar" id="barTemp"></div></div>
+          <div class="sensor-bar-wrap">
+            <div class="sensor-bar" id="barTemp"></div>
+          </div>
         </div>
         <div class="sensor-card" id="cardLight">
           <div class="sensor-label">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" />
+              <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+              <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
             LIGHT INTENSITY
           </div>
           <div class="sensor-value"><span id="light">--</span><span class="sensor-unit">/1023</span></div>
-          <div class="sensor-bar-wrap"><div class="sensor-bar" id="barLight"></div></div>
+          <div class="sensor-bar-wrap">
+            <div class="sensor-bar" id="barLight"></div>
+          </div>
         </div>
         <div class="sensor-card" id="cardSmoke">
           <div class="sensor-label">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 2c0 3.5 5 3.5 5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 2c0 3.5-5 3.5-5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 22H5a3 3 0 0 1 0-6h14a3 3 0 0 1 0 6h-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path d="M8 2c0 3.5 5 3.5 5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M16 2c0 3.5-5 3.5-5 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M8 22H5a3 3 0 0 1 0-6h14a3 3 0 0 1 0 6h-3" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            </svg>
             SMOKE DETECTOR
           </div>
           <div class="sensor-value"><span id="smoke">--</span></div>
           <div class="smoke-status" id="smokeStatus">AN TOÀN</div>
+        </div>
+      </section>
+
+      <!-- BEACH BANNER -->
+      <section class="beach-section" data-section="simple">
+        <div class="beach-banner-wrap">
+          <svg width="100%" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <clipPath id="bc">
+                <rect x="0" y="0" width="680" height="220" rx="14" />
+              </clipPath>
+              <linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#56CCF2" />
+                <stop offset="100%" stop-color="#F7B733" />
+              </linearGradient>
+              <linearGradient id="bsea" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2193b0" />
+                <stop offset="100%" stop-color="#6dd5ed" />
+              </linearGradient>
+              <linearGradient id="bsand" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f9e4b7" />
+                <stop offset="100%" stop-color="#e8c882" />
+              </linearGradient>
+            </defs>
+            <g clip-path="url(#bc)">
+              <rect x="0" y="0" width="680" height="220" fill="url(#bsky)" />
+              <circle cx="580" cy="52" r="34" fill="#FFE066" opacity="0.95" />
+              <circle cx="580" cy="52" r="26" fill="#FFD700" />
+              <g stroke="#FFE066" stroke-width="2.5" stroke-linecap="round" opacity="0.7">
+                <line x1="580" y1="8" x2="580" y2="0">
+                  <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite" />
+                </line>
+                <line x1="612" y1="20" x2="620" y2="12">
+                  <animate attributeName="opacity" values="0.5;1;0.5" dur="2.2s" repeatCount="indefinite" />
+                </line>
+                <line x1="624" y1="52" x2="634" y2="52">
+                  <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.8s" repeatCount="indefinite" />
+                </line>
+                <line x1="612" y1="84" x2="620" y2="92">
+                  <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite" />
+                </line>
+                <line x1="548" y1="20" x2="540" y2="12">
+                  <animate attributeName="opacity" values="0.6;1;0.6" dur="1.9s" repeatCount="indefinite" />
+                </line>
+                <line x1="536" y1="52" x2="526" y2="52">
+                  <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.1s" repeatCount="indefinite" />
+                </line>
+                <line x1="548" y1="84" x2="540" y2="92">
+                  <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.3s" repeatCount="indefinite" />
+                </line>
+              </g>
+              <g opacity="0.85">
+                <animateTransform attributeName="transform" type="translate" values="0,0;30,0;0,0" dur="18s"
+                  repeatCount="indefinite" />
+                <ellipse cx="80" cy="38" rx="38" ry="16" fill="white" />
+                <ellipse cx="108" cy="32" rx="28" ry="14" fill="white" />
+                <ellipse cx="55" cy="42" rx="22" ry="12" fill="white" />
+              </g>
+              <g opacity="0.7">
+                <animateTransform attributeName="transform" type="translate" values="0,0;-20,0;0,0" dur="24s"
+                  repeatCount="indefinite" />
+                <ellipse cx="300" cy="28" rx="30" ry="13" fill="white" />
+                <ellipse cx="325" cy="22" rx="22" ry="11" fill="white" />
+                <ellipse cx="278" cy="32" rx="18" ry="10" fill="white" />
+              </g>
+              <rect x="0" y="120" width="680" height="60" fill="url(#bsea)" />
+              <path d="M0,130 Q85,118 170,130 Q255,142 340,130 Q425,118 510,130 Q595,142 680,130 L680,160 L0,160 Z"
+                fill="#1a8fa8" opacity="0.6">
+                <animateTransform attributeName="transform" type="translate" values="0,0;-170,0;0,0" dur="4s"
+                  repeatCount="indefinite" />
+              </path>
+              <path d="M0,138 Q85,124 170,138 Q255,152 340,138 Q425,124 510,138 Q595,152 680,138 L680,165 L0,165 Z"
+                fill="#2193b0" opacity="0.5">
+                <animateTransform attributeName="transform" type="translate" values="0,0;170,0;0,0" dur="5s"
+                  repeatCount="indefinite" />
+              </path>
+              <path d="M0,148 Q85,140 170,148 Q255,156 340,148 Q425,140 510,148 Q595,156 680,148 L680,170 L0,170 Z"
+                fill="#6dd5ed" opacity="0.35">
+                <animateTransform attributeName="transform" type="translate" values="0,0;-85,0;0,0" dur="3.2s"
+                  repeatCount="indefinite" />
+              </path>
+              <rect x="0" y="172" width="680" height="48" fill="url(#bsand)" />
+              <ellipse cx="120" cy="192" rx="50" ry="4" fill="#e8c070" opacity="0.4" />
+              <ellipse cx="340" cy="200" rx="70" ry="4" fill="#e8c070" opacity="0.3" />
+              <ellipse cx="560" cy="188" rx="45" ry="3" fill="#e8c070" opacity="0.35" />
+              <line x1="60" y1="220" x2="72" y2="128" stroke="#7a5230" stroke-width="5" stroke-linecap="round" />
+              <path d="M72,128 Q50,108 28,116" stroke="#3a8c3f" stroke-width="3" fill="none" stroke-linecap="round" />
+              <path d="M72,128 Q88,104 116,108" stroke="#3a8c3f" stroke-width="3" fill="none" stroke-linecap="round" />
+              <path d="M72,128 Q60,110 62,90" stroke="#3a8c3f" stroke-width="3" fill="none" stroke-linecap="round" />
+              <ellipse cx="28" cy="116" rx="18" ry="8" fill="#4aad52" transform="rotate(-15,28,116)" />
+              <ellipse cx="116" cy="108" rx="20" ry="8" fill="#4aad52" transform="rotate(20,116,108)" />
+              <ellipse cx="62" cy="90" rx="16" ry="7" fill="#4aad52" transform="rotate(-5,62,90)" />
+              <circle cx="70" cy="130" r="5" fill="#a0522d" />
+              <circle cx="76" cy="134" r="4" fill="#8b4513" />
+              <line x1="480" y1="220" x2="480" y2="150" stroke="#c47d2b" stroke-width="3" />
+              <path d="M440,155 Q480,130 520,155" fill="#e74c3c" />
+              <path d="M440,155 Q460,145 480,155" fill="#f39c12" />
+              <path d="M480,155 Q500,145 520,155" fill="#f1c40f" />
+              <rect x="454" y="190" width="44" height="6" rx="3" fill="#d4a843" />
+              <rect x="456" y="196" width="40" height="5" rx="2" fill="#c8982a" />
+              <line x1="456" y1="196" x2="450" y2="215" stroke="#a07820" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="496" y1="196" x2="500" y2="215" stroke="#a07820" stroke-width="2.5" stroke-linecap="round" />
+              <g fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.85">
+                <animateTransform attributeName="transform" type="translate" values="-40,0;40,0;-40,0" dur="8s"
+                  repeatCount="indefinite" />
+                <path d="M200,55 Q206,50 212,55" />
+                <path d="M218,48 Q224,43 230,48" />
+              </g>
+              <g fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.7">
+                <animateTransform attributeName="transform" type="translate" values="20,0;-20,0;20,0" dur="11s"
+                  repeatCount="indefinite" />
+                <path d="M400,68 Q405,63 410,68" />
+                <path d="M415,62 Q420,57 425,62" />
+                <path d="M430,69 Q435,64 440,69" />
+              </g>
+              <!-- Marquee text strip -->
+              <rect x="0" y="84" width="680" height="34" fill="#0c3a5e" opacity="0.65" />
+              <text y="107" font-family="'JetBrains Mono',monospace" font-size="17" font-weight="700" fill="#FFE066"
+                letter-spacing="3">
+                <animate attributeName="x" values="680;-1600" dur="10s" repeatCount="indefinite" />
+                ☀️ Nhóm 1 · IoT · NT131.Q24 · ☀️ Nhóm 1 · IoT · NT131.Q24 · ☀️ Nhóm 1 · IoT · NT131.Q24
+              </text>
+            </g>
+          </svg>
         </div>
       </section>
 
@@ -162,7 +367,17 @@
         <div class="device-card">
           <div class="device-header">
             <div class="device-icon fan-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2a2 2 0 0 1 2 2c0 1.5-2 4-2 4s-2-2.5-2-4a2 2 0 0 1 2-2z" fill="currentColor" opacity="0.7"/><path d="M22 12a2 2 0 0 1-2 2c-1.5 0-4-2-4-2s2.5-2 4-2a2 2 0 0 1 2 2z" fill="currentColor" opacity="0.7"/><path d="M12 22a2 2 0 0 1-2-2c0-1.5 2-4 2-4s2 2.5 2 4a2 2 0 0 1-2 2z" fill="currentColor" opacity="0.7"/><path d="M2 12a2 2 0 0 1 2-2c1.5 0 4 2 4 2s-2.5 2-4 2a2 2 0 0 1-2-2z" fill="currentColor" opacity="0.7"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                <path d="M12 2a2 2 0 0 1 2 2c0 1.5-2 4-2 4s-2-2.5-2-4a2 2 0 0 1 2-2z" fill="currentColor"
+                  opacity="0.7" />
+                <path d="M22 12a2 2 0 0 1-2 2c-1.5 0-4-2-4-2s2.5-2 4-2a2 2 0 0 1 2 2z" fill="currentColor"
+                  opacity="0.7" />
+                <path d="M12 22a2 2 0 0 1-2-2c0-1.5 2-4 2-4s2 2.5 2 4a2 2 0 0 1-2 2z" fill="currentColor"
+                  opacity="0.7" />
+                <path d="M2 12a2 2 0 0 1 2-2c1.5 0 4 2 4 2s-2.5 2-4 2a2 2 0 0 1-2-2z" fill="currentColor"
+                  opacity="0.7" />
+              </svg>
             </div>
             <div>
               <div class="device-name">FAN</div>
@@ -182,7 +397,13 @@
         <div class="device-card">
           <div class="device-header">
             <div class="device-icon light-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><line x1="9" y1="18" x2="15" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="22" x2="14" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <line x1="9" y1="18" x2="15" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <line x1="10" y1="22" x2="14" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path
+                  d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
             </div>
             <div>
               <div class="device-name">LIGHT</div>
@@ -202,7 +423,12 @@
         <div class="device-card">
           <div class="device-header">
             <div class="device-icon buzzer-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
             </div>
             <div>
               <div class="device-name">BUZZER</div>
@@ -294,4 +520,5 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="app.js"></script>
 </body>
+
 </html>
