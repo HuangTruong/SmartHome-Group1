@@ -12,7 +12,7 @@ Chức năng chính:
   7. *** LƯU LỊCH SỬ SENSOR RA FILE JSON ***
 ========================================
 */
-
+require('dotenv').config();
 // #region ===== IMPORT THƯ VIỆN =====
 const express = require("express");
 const http = require("http");
@@ -204,7 +204,136 @@ function applyAutomation() {
 // #region ===== API WEB CLIENT =====
 
 app.get("/api/status", (req, res) => res.json(state));
+// ===== VOICE INTENT (AI) =====
+app.post('/api/voice-intent', async (req, res) => {
+  const { transcript } = req.body;
+  if (!transcript) return res.status(400).json({ error: 'No transcript' });
 
+  // List of models to try in order of preference
+  const configuredModel = process.env.OPENROUTER_MODEL;
+  const modelCandidates = [];
+  if (configuredModel) {
+    modelCandidates.push(configuredModel);
+  }
+  
+  // Fallbacks including reliable free models and OpenRouter's auto-router
+  modelCandidates.push(
+    'openrouter/free',
+    'google/gemma-2-9b-it:free',
+    'qwen/qwen-2.5-7b-instruct:free',
+    'meta-llama/llama-3-8b-instruct:free',
+    'microsoft/phi-3-medium-128k-instruct:free'
+  );
+
+  // Remove duplicates
+  const modelsToTry = [...new Set(modelCandidates)];
+  
+  let data = null;
+  let successModel = null;
+  let lastError = null;
+
+  for (const model of modelsToTry) {
+    try {
+      console.log(`🤖 Attempting voice intent parsing with model: ${model}`);
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            {
+              role: 'system',
+              content: `Bạn là hệ thống điều khiển nhà thông minh. Phân tích câu lệnh và trả về JSON.
+Thiết bị: fan, light, buzzer. Hành động: ON, OFF, AUTO.
+Format trả về: [{"device":"...","action":"..."}]
+Nếu tắt tất cả hoặc nghỉ ngơi: [{"device":"all","action":"OFF"}]
+Nếu không liên quan: []
+Chỉ trả JSON, không giải thích.`
+            },
+            { role: 'user', content: transcript }
+          ]
+        })
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`HTTP status ${response.status}: ${errText}`);
+      }
+
+      const resData = await response.json();
+      console.log(`OpenRouter response from ${model}:`, JSON.stringify(resData, null, 2));
+
+      if (!resData.choices || resData.choices.length === 0) {
+        throw new Error(`No choices in response: ${JSON.stringify(resData)}`);
+      }
+
+      // Clean up markdown block format if the model returns it (e.g. ```json ... ```)
+      let text = resData.choices[0].message.content.trim();
+      if (text.startsWith('```')) {
+        text = text.replace(/^```(?:json)?\n?/i, '').replace(/\n?```$/, '').trim();
+      }
+
+      // Validate JSON structure
+      const intents = JSON.parse(text);
+      if (!Array.isArray(intents)) {
+        throw new Error('Response is not a valid JSON array');
+      }
+
+      // Successfully processed request!
+      data = resData;
+      successModel = model;
+      break; // Exit candidate loop
+    } catch (err) {
+      console.warn(`⚠️ Model ${model} failed:`, err.message);
+      lastError = err;
+    }
+  }
+
+  if (!data) {
+    console.error('All models failed for voice intent parsing.');
+    return res.status(500).json({ 
+      error: 'AI failed', 
+      detail: lastError ? lastError.message : 'All models failed' 
+    });
+  }
+
+  try {
+    let text = data.choices[0].message.content.trim();
+    if (text.startsWith('```')) {
+      text = text.replace(/^```(?:json)?\n?/i, '').replace(/\n?```$/, '').trim();
+    }
+    const intents = JSON.parse(text);
+
+    const results = [];
+    for (const intent of intents) {
+      const devices = intent.device === 'all'
+        ? ['fan', 'light', 'buzzer']
+        : [intent.device];
+
+      for (const dev of devices) {
+        if (intent.action === 'AUTO') {
+          state.modes[dev] = 'AUTO';
+        } else {
+          state.modes[dev] = 'MANUAL';
+          state.devices[dev] = intent.action === 'ON';
+        }
+        addLog('manual', `🎙️ Voice (${successModel}): ${intent.action} ${dev}`);
+        results.push({ device: dev, action: intent.action });
+      }
+    }
+
+    applyAutomation();
+    broadcastState();
+    res.json({ success: true, intents: results, transcript, model: successModel });
+
+  } catch (err) {
+    console.error('Error post-processing AI response:', err);
+    res.status(500).json({ error: 'AI response parsing failed' });
+  }
+});
 app.post("/api/control/light", (req, res) => {
   const { action } = req.body;
   if (!["ON", "OFF", "AUTO"].includes(action))
